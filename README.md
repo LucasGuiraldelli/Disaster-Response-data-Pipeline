@@ -1,6 +1,6 @@
-## Project Motivation
+## Project Introduction
 
-In this project, I appled data engineering, natural language processing, and machine learning skills to analyze message data that people sent during disasters to build a model for an API that classifies disaster messages. These messages could potentially be sent to appropriate disaster relief agencies.
+In this project, I applied data engineering, natural language processing, and machine learning skills to analyze message data that people sent during disasters to build a model for that classifies disaster messages into categories. 
 
 
 ## File Descriptions 
