@@ -17,6 +17,21 @@ There are three main folders:
 3. app
     - run.py: Flask file to run the web application
     - templates contains html file for the web application
+    
+## Installations needed:
+with python 3.8 configured in your machine, istall the following python libs:
+<ul>
+  <li>numpy</li>
+  <li>pandas</li>
+  <li>sqlalchemy</li>
+  <li>re</li>  
+  <li>NLTK</li>
+  <li>pickle</li>
+  <li>Sklearn</li>
+  <li>re</li>
+  <li>plotly</li>
+</ul>
+
 
 ## Results
 
@@ -24,8 +39,8 @@ There are three main folders:
 2. A machine learning pipepline was developed to train a classifier to performs multi-output classification on the 36 categories in the dataset.
 3. A Flask app was created to show data visualization and classify the message that user enters on the web page.
 
-
 ## Instructions:
+
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
