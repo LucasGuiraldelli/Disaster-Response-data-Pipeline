@@ -28,7 +28,6 @@ with python 3.8 configured in your machine, istall the following python libs:
   <li>NLTK</li>
   <li>pickle</li>
   <li>Sklearn</li>
-  <li>re</li>
   <li>plotly</li>
 </ul>
 
