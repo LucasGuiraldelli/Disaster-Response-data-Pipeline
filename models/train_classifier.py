@@ -17,6 +17,7 @@ from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.model_selection import GridSearchCV
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score
@@ -64,20 +65,21 @@ def build_model():
             pipeline results
     '''
 
-    pipeline = Pipeline([
-        ('features', FeatureUnion([
+    pipeline = Pipeline([('vect', CountVectorizer(tokenizer=tokenize)),
+                ('tfidf_transformer', TfidfTransformer()),
+                ('classifier', MultiOutputClassifier(AdaBoostClassifier()))])
 
-            ('text_pipeline', Pipeline([
-                ('count_vectorizer', CountVectorizer(tokenizer=tokenize)),
-                ('tfidf_transformer', TfidfTransformer())
-            ]))
-            
-        ])),
+    parameters = {'vect__ngram_range': ((1, 1), (1, 2)),
+                  'vect__max_df': (0.75, 1.0)
+                  }
 
-        ('classifier', MultiOutputClassifier(AdaBoostClassifier()))
-    ])
+    # create model
+    model = GridSearchCV(estimator=pipeline,
+            param_grid=parameters,
+            verbose=3,
+            cv=3)
 
-    return pipeline
+    return model
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
@@ -108,7 +110,8 @@ def save_model(model, model_filepath):
         Output:
             A pickle file of saved model
     '''
-    pickle.dump(model, open(model_filepath, "wb"))
+    with open(model_filepath, 'wb') as file:
+        pickle.dump(model, file)
 
 
 def main():

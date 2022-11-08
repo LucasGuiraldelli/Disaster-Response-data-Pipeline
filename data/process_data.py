@@ -46,7 +46,7 @@ def clean_data(df):
     # Iterate through the category columns in df to keep only the last character of each string (the 1 or 0).
     for column in categories:
         categories[column] = categories[column]\
-                .astype(str).str.split('-').apply(lambda x:x[1])
+                .astype(str).str.split('-').apply(lambda x:x[1]).astype('string').str.replace('2', '1')
         
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
